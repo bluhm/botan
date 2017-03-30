@@ -21,6 +21,7 @@ class Getentropy final : public Entropy_Source
    public:
       std::string name() const override { return "getentropy"; }
       size_t poll(RandomNumberGenerator& rng) override;
+      Getentropy();
    };
 
 }
