@@ -80,7 +80,9 @@ class Test
             size_t tests_run() const { return tests_passed() + tests_failed(); }
             bool any_results() const { return tests_run() > 0; }
 
-            const std::string& who() const { return m_who; }
+            void prefix(const std::string& p) { m_prefix = p; }
+            std::string who() const
+               { return m_prefix.empty() ? m_who : m_prefix + ": " + m_who; }
             std::string result_string(bool verbose) const;
 
             static Result Failure(const std::string& who,
@@ -319,6 +321,7 @@ class Test
 
          private:
             std::string m_who;
+            std::string m_prefix;
             uint64_t m_started = 0;
             uint64_t m_ns_taken = 0;
             size_t m_tests_passed = 0;

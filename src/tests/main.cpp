@@ -241,7 +241,12 @@ class Test_Runner : public Botan_CLI::Command
             for(auto&& test_name : tests_to_run)
                {
                try {
-                  const auto results = Botan_Tests::Test::run_test(test_name, false);
+                  std::vector<Botan_Tests::Test::Result> results =
+                     Botan_Tests::Test::run_test(test_name, false);
+                  for(auto&& r : results)
+                     {
+                     r.prefix(test_name);
+                     }
                   out << report_out(results, tests_failed, tests_ran) << std::flush;
                }
                catch(std::exception& e)
@@ -269,7 +274,13 @@ class Test_Runner : public Botan_CLI::Command
                {
                auto run_it = [test_name]() -> std::vector<Botan_Tests::Test::Result> {
                   try {
-                     return Botan_Tests::Test::run_test(test_name, false);
+                      std::vector<Botan_Tests::Test::Result> results =
+                         Botan_Tests::Test::run_test(test_name, false);
+                      for(auto&& r : results)
+                        {
+                        r.prefix(test_name);
+                        }
+                     return results;
                   }
                   catch(std::exception& e)
                      {
