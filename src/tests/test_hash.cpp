@@ -24,7 +24,8 @@ class Hash_Function_Tests : public Text_Based_Test
 
          Test::Result result(algo);
 
-         const std::vector<std::string> providers = Botan::HashFunction::providers(algo);
+         const std::vector<std::string> providers =
+            provider_filter(Botan::HashFunction::providers(algo));
 
          if(providers.empty())
             {

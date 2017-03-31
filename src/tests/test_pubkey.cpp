@@ -23,7 +23,7 @@ namespace {
 
 std::vector<std::string> possible_pk_providers()
    {
-   return { "base", "openssl", "tpm" };
+   return Test::provider_filter({ "base", "openssl", "tpm" });
    }
 
 }

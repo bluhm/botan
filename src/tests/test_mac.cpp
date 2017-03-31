@@ -31,7 +31,8 @@ class Message_Auth_Tests : public Text_Based_Test
 
          Test::Result result(algo);
 
-         const std::vector<std::string> providers = Botan::MessageAuthenticationCode::providers(algo);
+         const std::vector<std::string> providers =
+            provider_filter(Botan::MessageAuthenticationCode::providers(algo));
 
          if(providers.empty())
             {
