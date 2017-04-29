@@ -43,7 +43,7 @@ make_openssl_block_cipher(const std::string& name);
 
 /* Cipher Modes */
 
-Cipher_Mode*
+std::unique_ptr<Cipher_Mode>
 make_openssl_cipher_mode(const std::string& name, Cipher_Dir direction);
 
 /* Hash */
